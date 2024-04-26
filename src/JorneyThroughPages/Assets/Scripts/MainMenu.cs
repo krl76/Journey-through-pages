@@ -157,7 +157,7 @@ public class MainMenu : MonoBehaviour
     
     public void StartGame()
     {
-        //FindObjectOfType<LoadScreen>().LoadLevel(_nameOfGameScene);
+        FindObjectOfType<LoadScene>().SceneLoad(_nameOfGameScene);
     }
     
     public void Exit()
