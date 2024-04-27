@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,11 +7,12 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _groundCheck;
+    [SerializeField] private Transform _flyCheck;
     [SerializeField] private Transform _cam;
     [SerializeField] private Animator _animator;
 
     private float _groundCheckRadius = 0.3f;
-    private float _speed = 11f;
+    private float _speed = 8f;
     private float _turnSpeed = 2500f;
     private float _jumpForce = 500f;
 
@@ -18,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _direction;
 
     private GravityBody _gravityBody;
+    private bool isGrounded = true;
+    private bool isFlyAnim = false;
 
     void Start()
     {
@@ -30,9 +34,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         _direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
-        bool isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
-        _animator.SetBool("isJumping", !isGrounded);
-
+        isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
+        isFlyAnim = Physics.CheckSphere(_flyCheck.position, _groundCheckRadius, _groundMask);
+        _animator.SetBool("isJumping", !isGrounded && Input.GetKey(KeyCode.Space));
+        _animator.SetBool("isFalling", !isGrounded && !isFlyAnim);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             _rigidbody.AddForce(-_gravityBody.GravityDirection * _jumpForce, ForceMode.Impulse);
@@ -45,6 +50,7 @@ public class PlayerController : MonoBehaviour
 
         if (isRunning)
         {
+
             Vector3 direction = transform.forward * _direction.z;
             _rigidbody.MovePosition(_rigidbody.position + direction * (_speed * Time.fixedDeltaTime));
 
