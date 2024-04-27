@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -8,7 +9,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _flyCheck;
-    [SerializeField] private Transform _stopper;
     [SerializeField] private Transform _cam;
     [SerializeField] private Animator _animator;
 
@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private GravityBody _gravityBody;
     private bool isGrounded = true;
     private bool isFlyAnim = false;
-    private bool isStopper = false;
+    private bool isJumped = false;
 
     void Start()
     {
@@ -38,18 +38,19 @@ public class PlayerController : MonoBehaviour
         _direction = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
         isGrounded = Physics.CheckSphere(_groundCheck.position, _groundCheckRadius, _groundMask);
         isFlyAnim = Physics.CheckSphere(_flyCheck.position, _groundCheckRadius, _groundMask);
-        isStopper = Physics.CheckSphere(_stopper.position, _groundCheckRadius, _groundMask);
 
         _animator.SetBool("isJumping", !isGrounded && Input.GetKey(KeyCode.Space));
         _animator.SetBool("isFalling", !isGrounded && !isFlyAnim);
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
+            isJumped = true;
             _rigidbody.AddForce(-_gravityBody.GravityDirection * _jumpForce, ForceMode.Impulse);
         }
 
-        if (isStopper)
+        if (isJumped && isGrounded)
         {
-            _rigidbody.velocity = _rigidbody.velocity * 0.25f;
+            isJumped = false;
+            _rigidbody.velocity = Vector3.zero;
         }
     }
 
