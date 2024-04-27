@@ -10,6 +10,8 @@ public class InteractWithObjects : MonoBehaviour
     private InteractActive interactActive;
     private PlayerAction playerAction;
     private bool interactOnTrigger;
+
+    public bool itemToQuest;
     
     private void Awake()
     {
@@ -36,6 +38,11 @@ public class InteractWithObjects : MonoBehaviour
         _interactCanvas.SetActive(interactOnTrigger);
     }
 
+    public void ActiveObject()
+    {
+        gameObject.SetActive(true);
+    }
+
     private void TakeObject()
     {
         if (gameObject.tag == "Interact" && interactOnTrigger)
@@ -43,18 +50,28 @@ public class InteractWithObjects : MonoBehaviour
             switch (_npcObjects.ToString())
             {
                 case "King":
+                    itemToQuest = true;
                     gameObject.SetActive(false);
                     break;
                 case "Honor":
+                    itemToQuest = true;
                     gameObject.SetActive(false);
                     break;
                 case "Drunk":
+                    itemToQuest = true;
+                    gameObject.SetActive(false);
                     break;
                 case "Light":
+                    itemToQuest = true;
+                    gameObject.SetActive(false);
                     break;
                 case "Deal":
+                    itemToQuest = true;
+                    gameObject.SetActive(false);
                     break;
                 case "Geo":
+                    itemToQuest = true;
+                    gameObject.SetActive(false);
                     break;
             }
         }

@@ -5,7 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.UI;
 
-public class DialogKing : MonoBehaviour
+public class DialogSystem : MonoBehaviour
 {
     [Header("Text Settings")]
     [SerializeField] private TextMeshProUGUI textComponent;
