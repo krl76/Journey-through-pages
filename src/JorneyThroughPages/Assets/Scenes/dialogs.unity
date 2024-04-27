@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -213,8 +213,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textComponent: {fileID: 407355452}
-  lines: []
   textSpeed: 0.15
+  king1: []
+  king2: []
+  honor1: []
+  honor2: []
+  drunk1: []
+  drunk2: []
+  light1: []
+  light2: []
+  deal1: []
+  deal2: []
+  geo1: []
+  geo2: []
 --- !u!1 &385853709
 GameObject:
   m_ObjectHideFlags: 0
