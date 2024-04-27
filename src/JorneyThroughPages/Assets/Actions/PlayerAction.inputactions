@@ -48,6 +48,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Dialogs",
+            "id": "49443550-d5bd-459f-89f8-82dceacfaf12",
+            "actions": [
+                {
+                    "name": "ScrollDialog",
+                    "type": "Button",
+                    "id": "8857ca70-deeb-4e8b-ae00-4380d2012eac",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5eafebfc-9071-4303-88c5-16cd485b15de",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ScrollDialog",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
