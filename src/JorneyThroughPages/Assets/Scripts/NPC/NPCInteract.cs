@@ -94,6 +94,7 @@ public class NPCInteract : MonoBehaviour
                     if (honor == 1 && interactWithObj.itemToQuest)
                     {
                         //dialogSystem.StartDialog(_npc.ToString(), honor);
+                        PlayerPrefs.SetString("Quest", _npc.ToString());
                         honor += 1;
                         break;
                     }
@@ -115,11 +116,11 @@ public class NPCInteract : MonoBehaviour
                     }
                     _textInteract.SetActive(false);
                     break;
-                    break;
                 case "Drunk":
                     if (drunk == 1 && interactWithObj.itemToQuest)
                     {
                         //dialogSystem.StartDialog(_npc.ToString(), drunk);
+                        PlayerPrefs.SetString("Quest", _npc.ToString());
                         drunk += 1;
                         break;
                     }
@@ -145,6 +146,7 @@ public class NPCInteract : MonoBehaviour
                     if (light == 1 && interactWithObj.itemToQuest)
                     {
                         //dialogSystem.StartDialog(_npc.ToString(), light);
+                        PlayerPrefs.SetString("Quest", _npc.ToString());
                         light += 1;
                         break;
                     }
@@ -170,6 +172,7 @@ public class NPCInteract : MonoBehaviour
                     if (deal == 1 && interactWithObj.itemToQuest)
                     {
                         //dialogSystem.StartDialog(_npc.ToString(), deal);
+                        PlayerPrefs.SetString("Quest", _npc.ToString());
                         deal += 1;
                         break;
                     }
@@ -195,6 +198,7 @@ public class NPCInteract : MonoBehaviour
                     if (geo == 1 && interactWithObj.itemToQuest)
                     {
                         //dialogSystem.StartDialog(_npc.ToString(), geo);
+                        PlayerPrefs.SetString("Quest", _npc.ToString());
                         geo += 1;
                         break;
                     }

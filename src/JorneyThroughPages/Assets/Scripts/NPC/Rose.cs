@@ -49,28 +49,39 @@ public class Rose : MonoBehaviour
                     case "King":
                         //действия с розой
                         questCheck._inQuest = false;
-                        PlayerPrefs.DeleteKey("Quest");
-                        Debug.Log("Quest Короля");
+                        PlayerPrefs.DeleteKey("Quest"); 
+                        //Debug.Log("Quest Короля");
                         break;
                     case "Honor":
                         //действия с розой
+                        questCheck._inQuest = false;
+                        PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Drunk":
                         //действия с розой
+                        questCheck._inQuest = false;
+                        PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Light":
                         //действия с розой
+                        questCheck._inQuest = false;
+                        PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Deal":
                         //действия с розой
+                        questCheck._inQuest = false;
+                        PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Geo":
                         //действия с розой
+                        questCheck._inQuest = false;
+                        PlayerPrefs.DeleteKey("Quest");
                         break;
                 }
             }
             else
             {
+                //мб диалоги сюда(мол, вы еще ничего не выполнили)
                 Debug.Log("Вы ничего не собрали еще");
             }
         }
