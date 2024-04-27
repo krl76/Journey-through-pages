@@ -4,14 +4,19 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Interact
-  - NPC
-  - Rose
+  - Transition
+  - Prince
+  - Alcoholic
+  - Lightman
+  - Dealman
+  - King
+  - Geograph
+  - HonorLover
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 
