@@ -1,16 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class RoseTimer : MonoBehaviour
 {
-    public float timeRemaining = 420;
+    private int seconds;
+    private int minutes;
+    public static int realTime;
 
-    void Update()
+    public TextMeshProUGUI Timer;
+
+    public void Reset()
     {
-        if (timeRemaining > 0)
+        seconds = 0;
+        minutes = 0;
+
+        Timer.text = "07:00";
+    }
+
+    public void StartTime()
+    {
+        StartCoroutine(RunTimer());
+    }
+
+    private IEnumerator RunTimer()
+    {
+        while (true)
         {
-            timeRemaining -= Time.deltaTime;
+            yield return new WaitForSeconds(1);
+            seconds--;
+            realTime = seconds + minutes * 60;
+
+            if (seconds == 0)
+            {
+                minutes -= 1;
+                seconds = 59;
+            }
+
+            if (seconds > 9)
+            {
+                Timer.text = "0" + minutes.ToString() + ":" + seconds.ToString();
+            }
+            else
+            {
+                Timer.text = "0" + minutes.ToString() + ":" + "0" + seconds.ToString();
+            }
         }
     }
 }
