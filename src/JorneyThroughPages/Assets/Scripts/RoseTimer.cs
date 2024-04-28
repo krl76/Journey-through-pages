@@ -10,11 +10,13 @@ public class RoseTimer : MonoBehaviour
     public int realTime;
     public bool isLost = false;
     [SerializeField] private GameObject canvas;
+    [SerializeField] private GameObject _canvasMessage;
     public TextMeshProUGUI Timer;
     [SerializeField] public Fading fade;
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         Reset();
         StartTime();
     }
@@ -22,15 +24,16 @@ public class RoseTimer : MonoBehaviour
     {
         if (isLost)
         {
-            Time.timeScale = 0;
-            canvas.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            Time.timeScale = 0f;
+            canvas.SetActive(true);
+            _canvasMessage.SetActive(false);
         }
     }
     public void Reset()
     {
-        seconds = 3;
+        seconds = 10;
         minutes = 0;
 
         Timer.text = "06:59";

@@ -26,7 +26,7 @@ public class Tasks : MonoBehaviour
     [Header("WinScreen")]
     [SerializeField] private GameObject _winScreen;
 
-    private bool kingWin, honorWin, drunkWin, lightWin, dealWin, geoWin;
+    public bool kingWin, honorWin, drunkWin, lightWin, dealWin, geoWin;
 
     private void Update()
     {
