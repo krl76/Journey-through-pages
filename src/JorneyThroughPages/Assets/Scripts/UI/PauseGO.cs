@@ -32,12 +32,14 @@ public class PauseGO : MonoBehaviour
     {
         if (!inPause)
         {
+            Cursor.lockState = CursorLockMode.None;
             inPause = true;
             _pauseGO.SetActive(true);
             Time.timeScale = 0;
         }
         else
         {
+            Cursor.lockState = CursorLockMode.Locked;
             inPause = false;
             _pauseGO.SetActive(false);
             Time.timeScale = 1f;
@@ -46,6 +48,7 @@ public class PauseGO : MonoBehaviour
 
     public void ToGameBtn()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         inPause = false;
         _pauseGO.SetActive(false);
         Time.timeScale = 1f;
