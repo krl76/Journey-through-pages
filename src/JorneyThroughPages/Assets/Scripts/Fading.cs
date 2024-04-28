@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class FadingPanel : MonoBehaviour
+public class Fading : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI fadeText;
     [SerializeField] private CanvasGroup canvasGroup;
