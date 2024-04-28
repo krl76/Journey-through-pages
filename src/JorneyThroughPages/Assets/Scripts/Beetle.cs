@@ -8,33 +8,25 @@ using static UnityEngine.ParticleSystem;
 public class Beetle : MonoBehaviour
 {
     [SerializeField] Transform rose;
-    [SerializeField] private GameObject beetleTrigger;
-    public GameObject beetleGO;
-    [SerializeField] private NavMeshAgent beetle;
-    private BeetleTrigger trigger;
-    private bool isSpawning;
-    private bool isTimerOut;
-    private void Awake()
-    {
-        trigger = beetleTrigger.GetComponent<BeetleTrigger>();
-    }
+    private NavMeshAgent beetle;
+
     private void Start()
     {
         beetle = GetComponent<NavMeshAgent>();
+        beetle.enabled = false;
     }
     private void Update()
     {
-        isSpawning = trigger.isSpawning;
-        isTimerOut = trigger.isTimerOut;
-        Vector3 directionToRose = rose.position - transform.position;
-        Vector3 oppositeDirection = transform.position - directionToRose;
-        if (isSpawning && !isTimerOut)
+        Vector3 directionToPlayer = rose.position - transform.position;
+        Vector3 oppositeDirection = transform.position - directionToPlayer;
+        if (!BeetleTrigger.isSpawning)
+        {
+            beetle.enabled = false;
+            beetle.SetDestination(rose.position);
+        }
+        else
         {
             beetle.SetDestination(oppositeDirection);
-        }
-        if (!isSpawning && isTimerOut)
-        {
-            beetle.SetDestination(rose.position);
         }
     }
 }

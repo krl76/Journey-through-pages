@@ -12,27 +12,22 @@ using UnityEngine.AI;
 
 public class BeetleTrigger : MonoBehaviour
 {
-    public bool isTimer = false;
-    public bool isTimerOut = false;
-    public bool isReady = false;
-    public bool isSpawning = false;
-    public bool isPlayerOnPlanet = false;
-    [SerializeField] private int timeToSpawn = 10000;
-
+    public bool isTimer;
+    public bool isReady;
+    public static bool isSpawning;
+    public bool isPlayerOnPlanet;
+    private float timeToSpawn;
+    public event Action beetleEvent;
     void Update()
     {
+        if (isTimer)
+        {
+            timeToSpawn -= Time.deltaTime;
+        }
         if (timeToSpawn <= 0)
         {
             isTimer = false;
             isReady = true;
-        }
-    }
-    private IEnumerator RunTimer(float time)
-    {
-        while (true)
-        {
-            yield return new WaitForSecondsRealtime(1);
-            timeToSpawn--;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -41,11 +36,10 @@ public class BeetleTrigger : MonoBehaviour
         {
             isTimer = true;
             isPlayerOnPlanet = false;
-            timeToSpawn = UnityEngine.Random.Range(3, 5);
-            isTimerOut = false;
-            RunTimer(timeToSpawn);
+            timeToSpawn = UnityEngine.Random.Range(3f, 5f);
         }
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if ((other.tag == "Prince") && isReady)
@@ -53,7 +47,7 @@ public class BeetleTrigger : MonoBehaviour
             isSpawning = true;
             isReady = false;
             isPlayerOnPlanet = true;
-            isTimer = false;
+            beetleEvent();
         }
     }
 }
