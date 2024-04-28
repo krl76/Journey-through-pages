@@ -59,6 +59,14 @@ public class NPCInteract : MonoBehaviour
     {
         interactOnTrigger = interactActive.interactOnTrigger;
         _interactCanvas.SetActive(interactOnTrigger);
+        if (dialogSystem.inDialog)
+        {
+            _textInteract.SetActive(false);
+        }
+        else
+        {
+            _textInteract.SetActive(true);
+        }
     }
 
     private void ActiveDialog()
@@ -71,7 +79,6 @@ public class NPCInteract : MonoBehaviour
                     case "King":
                         if (king == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), king);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -81,18 +88,14 @@ public class NPCInteract : MonoBehaviour
                         }
                         else if (questCheck.StatusQuest() && king == 1)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog("UniversalNPC", 0);
-                            _textInteract.SetActive(true);
                             break;
                         }
                         if (king == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), king);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), king);
@@ -104,7 +107,6 @@ public class NPCInteract : MonoBehaviour
                     case "Honor":
                         if (honor == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), honor);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -114,18 +116,14 @@ public class NPCInteract : MonoBehaviour
                         }
                         else if (questCheck.StatusQuest() && honor == 1)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog("UniversalNPC", 0);
-                            _textInteract.SetActive(true);;
                             break;
                         }
                         if (honor == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), honor);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), king);
@@ -137,7 +135,6 @@ public class NPCInteract : MonoBehaviour
                     case "Drunk":
                         if (drunk == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), drunk);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -147,18 +144,14 @@ public class NPCInteract : MonoBehaviour
                         }
                         else if (questCheck.StatusQuest() && drunk == 1)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog("UniversalNPC", 0);
-                            _textInteract.SetActive(true);
                             break;
                         }
                         if (drunk == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), drunk);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), drunk);
@@ -170,7 +163,6 @@ public class NPCInteract : MonoBehaviour
                     case "Light":
                         if (light == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), light);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -188,10 +180,8 @@ public class NPCInteract : MonoBehaviour
                         }
                         if (light == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), light);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), light);
@@ -203,7 +193,6 @@ public class NPCInteract : MonoBehaviour
                     case "Deal":
                         if (deal == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), deal);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -213,18 +202,14 @@ public class NPCInteract : MonoBehaviour
                         }
                         else if (questCheck.StatusQuest() && deal == 1)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog("UniversalNPC", 0);
-                            _textInteract.SetActive(true);
                             break;
                         }
                         if (deal == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), deal);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), deal);
@@ -236,7 +221,6 @@ public class NPCInteract : MonoBehaviour
                     case "Geo":
                         if (geo == 1 && interactWithObj.itemToQuest)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), geo);
                             PlayerPrefs.SetString("Quest", _npc.ToString());
@@ -246,18 +230,14 @@ public class NPCInteract : MonoBehaviour
                         }
                         else if (questCheck.StatusQuest() && geo == 1)
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog("UniversalNPC", 0);
-                            _textInteract.SetActive(true);
                             break;
                         }
                         if (geo == 0 && !questCheck.StatusQuest())
                         {
-                            _textInteract.SetActive(false);
                             _dialogBox.SetActive(true);
                             dialogSystem.StartDialog(_npc.ToString(), geo);
-                            _textInteract.SetActive(true);
                             questCheck._inQuest = true;
                             interactWithObj.ActiveObject();
                             task.ChangeTask(_npc.ToString(), geo);

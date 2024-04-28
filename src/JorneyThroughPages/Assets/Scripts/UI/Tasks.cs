@@ -22,7 +22,20 @@ public class Tasks : MonoBehaviour
     [SerializeField] private string[] light;
     [SerializeField] private string[] deal;
     [SerializeField] private string[] geo;
-    
+
+    [Header("WinScreen")]
+    [SerializeField] private GameObject _winScreen;
+
+    private bool kingWin, honorWin, drunkWin, lightWin, dealWin, geoWin;
+
+    private void Update()
+    {
+        if(kingWin && honorWin && drunkWin && lightWin && dealWin && geoWin)
+        {
+            _winScreen.SetActive(true);
+        }
+    }
+
     public void ActiveTask()
     {
         _texts.SetActive(true);
@@ -53,6 +66,7 @@ public class Tasks : MonoBehaviour
                     _king.text = king[3];
                     _king.color = Color.green;
                     _king.fontStyle = FontStyles.Strikethrough;
+                    kingWin = true;
                 }
                 break;
             case "Honor":
@@ -75,6 +89,7 @@ public class Tasks : MonoBehaviour
                     _honor.text = honor[3];
                     _honor.color = Color.green;
                     _honor.fontStyle = FontStyles.Strikethrough;
+                    honorWin = true;
                 }
                 break;
             case "Drunk":
@@ -97,6 +112,7 @@ public class Tasks : MonoBehaviour
                     _drunk.text = drunk[3];
                     _drunk.color = Color.green;
                     _drunk.fontStyle = FontStyles.Strikethrough;
+                    drunkWin = true;
                 }
                 break;
             case "Light":
@@ -119,6 +135,7 @@ public class Tasks : MonoBehaviour
                     _light.text = light[3];
                     _light.color = Color.green;
                     _light.fontStyle = FontStyles.Strikethrough;
+                    lightWin = true;
                 }
                 break;
             case "Deal":
@@ -141,6 +158,7 @@ public class Tasks : MonoBehaviour
                     _deal.text = deal[3];
                     _deal.color = Color.green;
                     _deal.fontStyle = FontStyles.Strikethrough;
+                    dealWin = true;
                 }
                 break;
             case "Geo":
@@ -163,6 +181,7 @@ public class Tasks : MonoBehaviour
                     _geo.text = geo[3];
                     _geo.color = Color.green;
                     _geo.fontStyle = FontStyles.Strikethrough;
+                    geoWin = true;
                 }
                 break;
         }

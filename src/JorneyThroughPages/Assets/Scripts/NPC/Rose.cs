@@ -14,6 +14,9 @@ public class Rose : MonoBehaviour
     [SerializeField] private GameObject _interactCanvas;
     [SerializeField] private GameObject _dialogBox;
     [SerializeField] private GameObject _tasks;
+
+    [Header("Text")]
+    [SerializeField] private GameObject _textInteraction;
     
     private InteractActive interactActive;
     private PlayerAction playerAction;
@@ -59,6 +62,14 @@ public class Rose : MonoBehaviour
             audio.Play();
             firstTrigger = false;
         }
+        if(dialogSystem.inDialog)
+        {
+            _textInteraction.SetActive(false);
+        }
+        else
+        {
+            _textInteraction.SetActive(true);
+        }
         _interactCanvas.SetActive(interactOnTrigger);
     }
 
@@ -73,6 +84,7 @@ public class Rose : MonoBehaviour
                 {
                     case "King":
                         _modelRose.SetColor("_BaseColor", new Color(1f, 0.59f, 0.59f));
+                        _dialogBox.SetActive(true);
                         dialogSystem.StartDialog("Rose", 0);
                         task.ChangeTask(nameOfQuest, 3);
                         questCheck._inQuest = false;
@@ -80,18 +92,21 @@ public class Rose : MonoBehaviour
                         break;
                     case "Honor":
                         _glass.SetActive(true);
+                        _dialogBox.SetActive(true);
                         dialogSystem.StartDialog("Rose", 1);
                         task.ChangeTask(nameOfQuest, 3);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Drunk":
+                        _dialogBox.SetActive(true);
                         dialogSystem.StartDialog("Rose", 2);
                         task.ChangeTask(nameOfQuest, 3);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Light":
+                        _dialogBox.SetActive(true);
                         _light.SetActive(true);
                         dialogSystem.StartDialog("Rose", 3);
                         task.ChangeTask(nameOfQuest, 3);
@@ -99,12 +114,14 @@ public class Rose : MonoBehaviour
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Deal":
+                        _dialogBox.SetActive(true);
                         dialogSystem.StartDialog("Rose", 4);
                         task.ChangeTask(nameOfQuest, 3);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Geo":
+                        _dialogBox.SetActive(true);
                         dialogSystem.StartDialog("Rose", 5);
                         task.ChangeTask(nameOfQuest, 3);
                         questCheck._inQuest = false;
@@ -116,6 +133,7 @@ public class Rose : MonoBehaviour
             {
                 if (!firstTrigger)
                 {
+                    _dialogBox.SetActive(true);
                     dialogSystem.StartDialog("UniversalRose", 0);
                 }
             }
