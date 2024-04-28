@@ -15,6 +15,7 @@ public class NPCInteract : MonoBehaviour
     
     [Header("Object")]
     [SerializeField] private GameObject _questObject;
+    [SerializeField] private GameObject _tasks;
 
     [Header("Interact")] 
     [SerializeField] private GameObject _questChecker;
@@ -27,6 +28,7 @@ public class NPCInteract : MonoBehaviour
     private PlayerAction playerAction;
     private DialogSystem dialogSystem;
     private InteractWithObjects interactWithObj;
+    private Tasks task;
     private bool interactOnTrigger;
     private bool inDialog;
     private int king, honor, drunk, light, deal, geo = 0;
@@ -36,6 +38,7 @@ public class NPCInteract : MonoBehaviour
         playerAction = new PlayerAction();
         playerAction.UI.Interact.started += ctx => ActiveDialog();
 
+        task = _tasks.GetComponent<Tasks>();
         questCheck = _questChecker.GetComponent<InQuestCheck>();
         interactWithObj = _questObject.GetComponent<InteractWithObjects>();
         interactActive = GetComponent<InteractActive>();
@@ -72,6 +75,7 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), king);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), king + 1);
                         king += 1;
                         break;
                     }
@@ -91,6 +95,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), king);
                         king += 1;
                         break;
                     }
@@ -103,6 +108,8 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), honor);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), honor + 1);
+                        honor += 1;
                         break;
                     }
                     else if (questCheck.StatusQuest() && honor == 1)
@@ -121,6 +128,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), king);
                         honor += 1;
                         break;
                     }
@@ -133,6 +141,7 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), drunk);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), drunk + 1);
                         drunk += 1;
                         break;
                     }
@@ -152,6 +161,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), drunk);
                         drunk += 1;
                         break;
                     }
@@ -164,6 +174,7 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), light);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), light + 1);
                         light += 1;
                         break;
                     }
@@ -183,6 +194,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), light);
                         light += 1;
                         break;
                     }
@@ -195,6 +207,7 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), deal);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), deal + 1);
                         deal += 1;
                         break;
                     }
@@ -214,6 +227,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), deal);
                         deal += 1;
                         break;
                     }
@@ -226,6 +240,7 @@ public class NPCInteract : MonoBehaviour
                         _dialogBox.SetActive(true);
                         dialogSystem.StartDialog(_npc.ToString(), geo);
                         PlayerPrefs.SetString("Quest", _npc.ToString());
+                        task.ChangeTask(_npc.ToString(), geo + 1);
                         geo += 1;
                         break;
                     }
@@ -245,6 +260,7 @@ public class NPCInteract : MonoBehaviour
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
+                        task.ChangeTask(_npc.ToString(), geo);
                         geo += 1;
                         break;
                     }

@@ -6,9 +6,11 @@ public class InteractWithObjects : MonoBehaviour
 {
     [SerializeField] private GameObject _interactCanvas;
     [SerializeField] private NpcObjects _npcObjects;
+    [SerializeField] private GameObject _task;
     
     private InteractActive interactActive;
     private PlayerAction playerAction;
+    private Tasks task;
     private bool interactOnTrigger;
 
     public bool itemToQuest;
@@ -18,7 +20,8 @@ public class InteractWithObjects : MonoBehaviour
         playerAction = new PlayerAction();
         playerAction.UI.Interact.started += ctx => TakeObject();
         interactActive = GetComponent<InteractActive>();
-        
+
+        task = _task.GetComponent<Tasks>();
         interactOnTrigger = interactActive.interactOnTrigger;
     }
 
@@ -51,26 +54,32 @@ public class InteractWithObjects : MonoBehaviour
             {
                 case "King":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
                 case "Honor":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
                 case "Drunk":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
                 case "Light":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
                 case "Deal":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
                 case "Geo":
                     itemToQuest = true;
+                    task.ChangeTask(_npcObjects.ToString(), 1);
                     gameObject.SetActive(false);
                     break;
             }
