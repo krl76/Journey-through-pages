@@ -22,6 +22,7 @@ public class Rose : MonoBehaviour
     private Tasks task;
     private bool interactOnTrigger;
     private bool firstTrigger;
+    private bool inDialog;
     private AudioSource audio;
 
     private void Awake()
@@ -31,7 +32,7 @@ public class Rose : MonoBehaviour
         
         _modelRose.SetColor("_BaseColor", Color.white);
         firstTrigger = true;
-
+        
         task = _tasks.GetComponent<Tasks>();
         audio = GetComponent<AudioSource>();
         dialogSystem = _dialogBox.GetComponent<DialogSystem>();
