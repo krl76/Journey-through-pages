@@ -417,6 +417,21 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95328103556620382, guid: e0331453113676149a9c0b2bc03e60de,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 99752f27e04a7d0469d969fee769bc32, type: 2}
+    - target: {fileID: 95328103556620382, guid: e0331453113676149a9c0b2bc03e60de,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'IndexFinger_02'\n\tTransform 'Elbow_R'\n\tTransform
+        'Finger_02'\n\tTransform 'Finger_03'\n\tTransform 'Ball_L'\n\tTransform 'Clavicle_L'\n\tTransform
+        'Finger_01'\n\tTransform 'Neck'\n\tTransform 'IndexFinger_03'\n\tTransform
+        'Elbow_L'\n\tand more ...\n\tFrom animation clip 'Unarmed Idle'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
