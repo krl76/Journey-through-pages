@@ -79,6 +79,8 @@ public class DialogSystem : MonoBehaviour
     private AudioClip[] _audioClipIter;
     private int i;
 
+    public bool inDialog;
+
     private void Awake()
     {
         playerAction = new PlayerAction();
@@ -95,6 +97,9 @@ public class DialogSystem : MonoBehaviour
     private void OnEnable()
     {
         playerAction.Enable();
+        textComponent.text = string.Empty;
+        i = 0;
+        index = 0;
     }
 
     private void OnDisable()
@@ -119,6 +124,8 @@ public class DialogSystem : MonoBehaviour
 
     public void StartDialog(string name, int iter)
     {
+        i = 0;
+        inDialog = true;
         switch (name)
         {
             case "King":
@@ -299,6 +306,7 @@ public class DialogSystem : MonoBehaviour
         }
         else
         {
+            inDialog = false;
             gameObject.SetActive(false);
         }
     }
