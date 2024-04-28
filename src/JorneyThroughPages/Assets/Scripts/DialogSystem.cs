@@ -14,6 +14,7 @@ public class DialogSystem : MonoBehaviour
     [Header("King Dialogs")]
     [SerializeField] private string[] king1;
     [SerializeField] private string[] king2;
+    [SerializeField] private AudioClip[] _king1Audio;
     
     [Header("Honor Dialogs")]
     [SerializeField] private string[] honor1;
@@ -35,17 +36,29 @@ public class DialogSystem : MonoBehaviour
     [SerializeField] private string[] geo1;
     [SerializeField] private string[] geo2;
 
+    [Header("Dialog Manager")]
+    [SerializeField] private GameObject _dialogManager;
     
     private int index;
     
     private PlayerAction playerAction;
     private string[] lineNow;
 
+    private AudioSource audio;
+    private AudioClip[] _audioClipIter;
+    private int i;
+
     private void Awake()
     {
         playerAction = new PlayerAction();
 
         playerAction.Dialogs.ScrollDialog.started += ctx => ScrollDia();
+        
+        textComponent.text = string.Empty;
+        
+        audio = _dialogManager.GetComponent<AudioSource>();
+
+        i = 0;
     }
 
     private void OnEnable()
@@ -60,20 +73,18 @@ public class DialogSystem : MonoBehaviour
 
     private void ScrollDia()
     {
-        if(textComponent.text == lineNow[index])
+        if (textComponent.text == lineNow[index])
+        {
+            audio.Stop();
             NextLine(lineNow);
+        }
         else
         {
             StopAllCoroutines();
+            audio.Stop();
             textComponent.text = lineNow[index];
         }
     }
-
-    /*void Start()
-    {
-        textComponent.text = string.Empty;
-        StartDialog();
-    }*/
 
     public void StartDialog(string name, int iter)
     {
@@ -86,6 +97,9 @@ public class DialogSystem : MonoBehaviour
                 }
                 if (iter == 0)
                 {
+                    _audioClipIter = _king1Audio;
+                    audio.clip = _audioClipIter[i];
+                    audio.Play();
                     StartCoroutine(TypeLine(king1));
                 }
                 break;
@@ -156,9 +170,12 @@ public class DialogSystem : MonoBehaviour
     {
         if (index < line.Length - 1)
         {
+            i++;
+            audio.clip = _audioClipIter[i];
+            audio.Play();
             index++;
             textComponent.text = string.Empty;
-            StartCoroutine(TypeLine(king1));
+            StartCoroutine(TypeLine(line));
         }
         else
         {

@@ -25,7 +25,7 @@ public class NPCInteract : MonoBehaviour
     private InQuestCheck questCheck;
     private InteractActive interactActive;
     private PlayerAction playerAction;
-    //private DialogSystem dialogSystem;
+    private DialogSystem dialogSystem;
     private InteractWithObjects interactWithObj;
     private bool interactOnTrigger;
     private int king, honor, drunk, light, deal, geo = 0;
@@ -38,8 +38,7 @@ public class NPCInteract : MonoBehaviour
         questCheck = _questChecker.GetComponent<InQuestCheck>();
         interactWithObj = _questObject.GetComponent<InteractWithObjects>();
         interactActive = GetComponent<InteractActive>();
-        //dialogSystem = _dialogBox.GetComponent<DialogSystem>();
-        //interactOnTrigger = interactActive.interactOnTrigger;
+        dialogSystem = _dialogBox.GetComponent<DialogSystem>();
     }
 
     private void OnEnable()
@@ -81,7 +80,8 @@ public class NPCInteract : MonoBehaviour
                     if (king == 0 && !questCheck.StatusQuest())
                     {
                         _textInteract.SetActive(false);
-                        //dialogSystem.StartDialog(_npc.ToString(), king);
+                        _dialogBox.SetActive(true);
+                        dialogSystem.StartDialog(_npc.ToString(), king);
                         _textInteract.SetActive(true);
                         questCheck._inQuest = true;
                         interactWithObj.ActiveObject();
