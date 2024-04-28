@@ -5,7 +5,14 @@ using UnityEngine;
 
 public class Rose : MonoBehaviour
 {
+    [Header("For Rose")] 
+    [SerializeField] private GameObject _glass;
+    [SerializeField] private GameObject _light;
+    [SerializeField] private Material _modelRose;
+    
+    [Header("Canvases")]
     [SerializeField] private GameObject _interactCanvas;
+    [SerializeField] private GameObject _dialogBox;
     
     private InteractActive interactActive;
     private PlayerAction playerAction;
@@ -16,7 +23,9 @@ public class Rose : MonoBehaviour
     {
         playerAction = new PlayerAction();
         playerAction.UI.Interact.started += ctx => RoseQuest();
-
+        
+        _modelRose.SetColor("_BaseColor", Color.white);
+        
         questCheck = FindObjectOfType<InQuestCheck>();
         interactActive = GetComponent<InteractActive>();
     }
@@ -47,33 +56,29 @@ public class Rose : MonoBehaviour
                 switch (nameOfQuest)
                 {
                     case "King":
-                        //действия с розой
+                        _modelRose.SetColor("_BaseColor", new Color(1f, 0.59f, 0.59f));
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest"); 
-                        //Debug.Log("Quest Короля");
                         break;
                     case "Honor":
-                        //действия с розой
+                        _glass.SetActive(true);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Drunk":
-                        //действия с розой
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Light":
-                        //действия с розой
+                        _light.SetActive(true);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Deal":
-                        //действия с розой
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Geo":
-                        //действия с розой
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
