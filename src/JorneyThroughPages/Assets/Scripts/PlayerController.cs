@@ -6,12 +6,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player")]
     [SerializeField] private LayerMask _groundMask;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private Transform _flyCheck;
     [SerializeField] private Transform _cam;
     [SerializeField] private Animator _animator;
 
+    [Header("SFX")] 
+    [SerializeField] private GameObject _prefabAudio;
+    [SerializeField] private AudioClip[] _clips;
+    [SerializeField] private int _moveTime, time;
+
+    //private AudioSource _audioSource;
+    
     private float _groundCheckRadius = 0.3f;
     private float _speed = 8f;
     private float _turnSpeed = 2500f;
@@ -63,12 +71,31 @@ public class PlayerController : MonoBehaviour
 
             Vector3 direction = transform.forward * _direction.z;
             _rigidbody.MovePosition(_rigidbody.position + direction * (_speed * Time.fixedDeltaTime));
-
             Quaternion rightDirection = Quaternion.Euler(0f, _direction.x * (_turnSpeed * Time.fixedDeltaTime), 0f);
             Quaternion newRotation = Quaternion.Slerp(_rigidbody.rotation, _rigidbody.rotation * rightDirection, Time.fixedDeltaTime * 3f); ;
             _rigidbody.MoveRotation(newRotation);
+            Audio();
+            if (time > 0)
+            {
+                time--;
+            }
         }
 
         _animator.SetBool("isRunning", isRunning);
+    }
+
+    private void Audio()
+    {
+        if(time != 0) return;
+        time = _moveTime;
+        AudioSource audio = GameObject.Instantiate(_prefabAudio).GetComponent<AudioSource>();
+        if (!isGrounded && !isFlyAnim)
+        {
+            audio.Stop();
+            return;
+        }
+        audio.clip = _clips[Random.Range(1,3)];
+        audio.Play();
+        Destroy(audio, 5);
     }
 }
