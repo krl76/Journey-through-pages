@@ -19,6 +19,8 @@ public class Rose : MonoBehaviour
     private InQuestCheck questCheck;
     private DialogSystem dialogSystem;
     private bool interactOnTrigger;
+    private bool firstTrigger;
+    private AudioSource audio;
 
     private void Awake()
     {
@@ -26,7 +28,9 @@ public class Rose : MonoBehaviour
         playerAction.UI.Interact.started += ctx => RoseQuest();
         
         _modelRose.SetColor("_BaseColor", Color.white);
-
+        firstTrigger = true;
+        
+        audio = GetComponent<AudioSource>();
         dialogSystem = _dialogBox.GetComponent<DialogSystem>();
         questCheck = FindObjectOfType<InQuestCheck>();
         interactActive = GetComponent<InteractActive>();
@@ -45,6 +49,11 @@ public class Rose : MonoBehaviour
     private void Update()
     {
         interactOnTrigger = interactActive.interactOnTrigger;
+        if (interactOnTrigger && firstTrigger)
+        {
+            audio.Play();
+            firstTrigger = false;
+        }
         _interactCanvas.SetActive(interactOnTrigger);
     }
 
@@ -94,7 +103,10 @@ public class Rose : MonoBehaviour
             }
             else
             {
-                dialogSystem.StartDialog("UniversalRose", 0);
+                if (!firstTrigger)
+                {
+                    dialogSystem.StartDialog("UniversalRose", 0);
+                }
             }
         }
     }
