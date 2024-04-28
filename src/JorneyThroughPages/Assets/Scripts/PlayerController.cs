@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
         _rigidbody = transform.GetComponent<Rigidbody>();
         _gravityBody = transform.GetComponent<GravityBody>();
         Cursor.lockState = CursorLockMode.Locked;

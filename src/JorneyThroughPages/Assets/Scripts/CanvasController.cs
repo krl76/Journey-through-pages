@@ -7,7 +7,7 @@ public class CanvasController : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(1);
     }
     public void mainMenu()
     {

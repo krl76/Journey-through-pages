@@ -22,8 +22,10 @@ public class RoseTimer : MonoBehaviour
     {
         if (isLost)
         {
+            Time.timeScale = 0;
             canvas.SetActive(true);
-            fade.FadeIn(2f);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
     public void Reset()
@@ -51,10 +53,12 @@ public class RoseTimer : MonoBehaviour
                 seconds = 59;
             }
             realTime = seconds + minutes * 60;
+
             if (realTime <= 0)
             {
                 isLost = true;
             }
+
             if (seconds > 9)
             {
                 Timer.text = "0" + minutes.ToString() + ":" + seconds.ToString();
