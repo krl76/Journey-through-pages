@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:src/JorneyThroughPages/Assets/Prefabs/Lights.prefab.meta
-guid: b6f986905bfd97245bbe14cb10532e9e
-========
-guid: 0c3bdeb3c1e918c42964bf782b52ad5d
->>>>>>>> origin/map-formergewithtema:src/JorneyThroughPages/Assets/Prefabs/GeographPlanetEdited.prefab.meta
+guid: 3b331904f55d97d42bf1053fb892a620
 PrefabImporter:
   externalObjects: {}
   userData: 
