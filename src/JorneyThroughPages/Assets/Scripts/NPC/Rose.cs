@@ -17,6 +17,7 @@ public class Rose : MonoBehaviour
     private InteractActive interactActive;
     private PlayerAction playerAction;
     private InQuestCheck questCheck;
+    private DialogSystem dialogSystem;
     private bool interactOnTrigger;
 
     private void Awake()
@@ -25,7 +26,8 @@ public class Rose : MonoBehaviour
         playerAction.UI.Interact.started += ctx => RoseQuest();
         
         _modelRose.SetColor("_BaseColor", Color.white);
-        
+
+        dialogSystem = _dialogBox.GetComponent<DialogSystem>();
         questCheck = FindObjectOfType<InQuestCheck>();
         interactActive = GetComponent<InteractActive>();
     }
@@ -57,28 +59,34 @@ public class Rose : MonoBehaviour
                 {
                     case "King":
                         _modelRose.SetColor("_BaseColor", new Color(1f, 0.59f, 0.59f));
+                        dialogSystem.StartDialog("Rose", 0);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest"); 
                         break;
                     case "Honor":
                         _glass.SetActive(true);
+                        dialogSystem.StartDialog("Rose", 1);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Drunk":
+                        dialogSystem.StartDialog("Rose", 2);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Light":
                         _light.SetActive(true);
+                        dialogSystem.StartDialog("Rose", 3);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Deal":
+                        dialogSystem.StartDialog("Rose", 4);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
                     case "Geo":
+                        dialogSystem.StartDialog("Rose", 5);
                         questCheck._inQuest = false;
                         PlayerPrefs.DeleteKey("Quest");
                         break;
@@ -86,8 +94,7 @@ public class Rose : MonoBehaviour
             }
             else
             {
-                //мб диалоги сюда(мол, вы еще ничего не выполнили)
-                Debug.Log("Вы ничего не собрали еще");
+                dialogSystem.StartDialog("UniversalRose", 0);
             }
         }
     }
