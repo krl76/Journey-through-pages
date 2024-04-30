@@ -33,6 +33,7 @@ public class PauseGO : MonoBehaviour
         if (!inPause)
         {
             Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
             inPause = true;
             _pauseGO.SetActive(true);
             Time.timeScale = 0;
@@ -40,6 +41,7 @@ public class PauseGO : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             inPause = false;
             _pauseGO.SetActive(false);
             Time.timeScale = 1f;
@@ -49,6 +51,7 @@ public class PauseGO : MonoBehaviour
     public void ToGameBtn()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         inPause = false;
         _pauseGO.SetActive(false);
         Time.timeScale = 1f;

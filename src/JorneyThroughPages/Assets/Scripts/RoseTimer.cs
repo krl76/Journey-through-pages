@@ -33,10 +33,10 @@ public class RoseTimer : MonoBehaviour
     }
     public void Reset()
     {
-        seconds = 10;
-        minutes = 0;
+        seconds = 59;
+        minutes = 9;
 
-        Timer.text = "06:59";
+        Timer.text = "09:59";
     }
 
     public void StartTime()

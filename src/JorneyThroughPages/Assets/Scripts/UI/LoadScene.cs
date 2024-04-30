@@ -9,7 +9,10 @@ public class LoadScene : MonoBehaviour
     [SerializeField] private Animator _loadingScreen;
     [SerializeField] private Slider _progressSlider;
     [SerializeField] private bool _endAnim;
-    
+    [SerializeField] private GameObject _image;
+    [SerializeField] private Canvas _thisCanvas;
+    [SerializeField] private GameObject _thisCanvas2;
+
     private float progressValue;
     
     public void EndLoadingAnimation()    { _endAnim = false; }
@@ -18,6 +21,9 @@ public class LoadScene : MonoBehaviour
     
     public void SceneLoad(string nameScene)
     {
+        _thisCanvas2.SetActive(true);
+        _thisCanvas.sortingOrder = 100;
+        _image.SetActive(true);
         Time.timeScale = 1f;
         _loadingScreen.SetTrigger("StartAnim");
         _endAnim = true;
@@ -40,6 +46,7 @@ public class LoadScene : MonoBehaviour
         while (loading.progress < 0.9f)
         {
             _progressSlider.value = _progressSlider.value = Mathf.Clamp01(loading.progress / 0.9f);
+            _image.SetActive(true);
             yield return null;
         }
 

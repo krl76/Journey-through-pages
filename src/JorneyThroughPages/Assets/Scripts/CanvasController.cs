@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CanvasController : MonoBehaviour
 {
+    [SerializeField] private string _nameOfGameScene;
+
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.None;
@@ -14,10 +16,10 @@ public class CanvasController : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MapAnims");
     }
     public void mainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(_nameOfGameScene);
     }
 }
